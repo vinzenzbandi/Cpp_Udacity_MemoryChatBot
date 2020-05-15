@@ -13,7 +13,7 @@ private:
     wxBoxSizer *_dialogSizer;
     wxBitmap _image;
 
-    //// STUDENT CODE
+    //// STUDENT CODE TODO
     ////
 
     ChatLogic *_chatLogic;

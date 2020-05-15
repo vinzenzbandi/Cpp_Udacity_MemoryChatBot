@@ -13,7 +13,7 @@ class GraphNode;
 class ChatLogic
 {
 private:
-    //// STUDENT CODE
+    //// STUDENT CODE TODO
     ////
 
     // data handles (owned)
