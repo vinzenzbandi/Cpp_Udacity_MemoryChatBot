@@ -8,6 +8,8 @@
 #include "graphedge.h"
 #include "chatbot.h"
 
+using std::cout; 
+
 // constructor WITHOUT memory allocation
 ChatBot::ChatBot()
 {
@@ -20,7 +22,7 @@ ChatBot::ChatBot()
 // constructor WITH memory allocation
 ChatBot::ChatBot(std::string filename)
 {
-    std::cout << "ChatBot Constructor" << std::endl;
+    cout << "ChatBot Constructor" << std::endl;
     
     // invalidate data handles
     _chatLogic = nullptr;
@@ -32,7 +34,7 @@ ChatBot::ChatBot(std::string filename)
 
 ChatBot::~ChatBot()
 {
-    std::cout << "ChatBot Destructor" << std::endl;
+    cout << "ChatBot Destructor" << std::endl;
 
     // deallocate heap memory
     if(_image != NULL) // Attention: wxWidgets used NULL and not nullptr
@@ -44,7 +46,61 @@ ChatBot::~ChatBot()
 
 //// STUDENT CODE TODO
 //// 
+// Copy Constructor
+ChatBot::ChatBot(const ChatBot &source){
+    cout << "ChatBot Copy Constructor" << std::endl;
+    _image = new wxBitmap();
+    *_image = *source._image;
+    *_currentNode = *source._currentNode;
+    *_chatLogic = *source._chatLogic;
+    *_rootNode = *source._rootNode;
+}
 
+// Copy Assignment Operator
+ChatBot &ChatBot::operator=(const ChatBot &source){
+    cout << "ChatBot Copy Assignment Operator" << std::endl;
+    if (this ==  &source)
+        return *this;
+    delete _image;
+    _image = new wxBitmap();
+    *_image = *source._image;
+    *_currentNode = *source._currentNode;
+    *_chatLogic = *source._chatLogic;
+    *_rootNode = *source._rootNode;
+    return *this;
+}
+
+// Move Constructor
+ChatBot::ChatBot(ChatBot &&source){
+    cout << "ChatBot Move Constructor" << std::endl;
+    _image = source._image;
+    _currentNode = source._currentNode;
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode;
+
+    source._image = nullptr;
+    source._currentNode = nullptr;
+    source._chatLogic = nullptr;
+    source._rootNode = nullptr;
+}
+
+// Move Assignment Operator
+ChatBot &ChatBot::operator=(ChatBot &&source){
+    cout << "ChatBot Move Assignment Operator" << std::endl;
+    if (this == &source)
+        return *this;
+    delete _image;
+    _image = source._image;
+    _currentNode = source._currentNode;
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode;
+
+    source._image = nullptr;
+    source._currentNode = nullptr;
+    source._chatLogic = nullptr;
+    source._rootNode = nullptr;
+    return *this;
+}
 ////
 //// EOF STUDENT CODE
 
