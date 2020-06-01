@@ -5,6 +5,8 @@
 #include <string>
 #include "chatgui.h"
 
+using namespace std;
+
 // forward declarations
 class ChatBot;
 class GraphEdge;
@@ -17,7 +19,7 @@ private:
     ////
 
     // data handles (owned)
-    std::vector<GraphNode *> _nodes;
+    vector<unique_ptr<GraphNode>> _nodes;
     std::vector<GraphEdge *> _edges;
 
     ////
