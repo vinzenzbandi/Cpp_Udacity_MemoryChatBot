@@ -210,8 +210,11 @@ void ChatLogic::LoadAnswerGraphFromFile(string filename)
     }
 
     // add chatbot to graph root node
+    ChatBot localCB = ChatBot(filename);
+    localCB.SetChatLogicHandle(this);
+    localCB.SetRootNode(rootNode);
+    rootNode->MoveChatbotHere(move(localCB));
     _chatBot->SetRootNode(rootNode);
-    rootNode->MoveChatbotHere(_chatBot);
     
     ////
     //// EOF STUDENT CODE
