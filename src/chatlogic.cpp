@@ -40,10 +40,7 @@ ChatLogic::~ChatLogic()
     // removed in task 3
 
     // delete all edges
-    for (auto it = begin(_edges); it != end(_edges); ++it)
-    {
-        delete *it;
-    }
+    // removed in task 4
 
     ////
     //// EOF STUDENT CODE
@@ -158,16 +155,15 @@ void ChatLogic::LoadAnswerGraphFromFile(string filename)
                             auto childNode = find_if(_nodes.begin(), _nodes.end(), [&childToken](const unique_ptr<GraphNode> &node) { return node->GetID() == stoi(childToken->second); });
 
                             // create new edge
-                            GraphEdge *edge = new GraphEdge(id);
+                            unique_ptr<GraphEdge> edge = make_unique<GraphEdge>(id);
                             edge->SetChildNode((*childNode).get());
                             edge->SetParentNode((*parentNode).get());
-                            _edges.push_back(edge);
 
                             // find all keywords for current node
                             AddAllTokensToElement("KEYWORD", tokens, *edge);
 
                             // store reference in child node and parent node
-                            (*childNode)->AddEdgeToParentNode(edge);
+                            (*childNode)->AddEdgeToParentNode(edge.get());
                             (*parentNode)->AddEdgeToChildNode(move(edge));
                         }
 

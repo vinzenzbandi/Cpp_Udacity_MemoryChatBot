@@ -19,8 +19,7 @@ private:
     ////
 
     // data handles (owned)
-    vector<unique_ptr<GraphNode>> _nodes;
-    std::vector<GraphEdge *> _edges;
+    vector<unique_ptr<GraphNode>> _nodes; //updated task 3
 
     ////
     //// EOF STUDENT CODE
@@ -31,11 +30,11 @@ private:
     ChatBotPanelDialog *_panelDialog;
 
     // proprietary type definitions
-    typedef std::vector<std::pair<std::string, std::string>> tokenlist;
+    typedef vector<pair<string, string>> tokenlist;
 
     // proprietary functions
     template <typename T>
-    void AddAllTokensToElement(std::string tokenID, tokenlist &tokens, T &element);
+    void AddAllTokensToElement(string tokenID, tokenlist &tokens, T &element);
 
 public:
     // constructor / destructor
@@ -47,9 +46,9 @@ public:
     void SetChatbotHandle(ChatBot *chatbot);
 
     // proprietary functions
-    void LoadAnswerGraphFromFile(std::string filename);
-    void SendMessageToChatbot(std::string message);
-    void SendMessageToUser(std::string message);
+    void LoadAnswerGraphFromFile(string filename);
+    void SendMessageToChatbot(string message);
+    void SendMessageToUser(string message);
     wxBitmap *GetImageFromChatbot();
 };
 
