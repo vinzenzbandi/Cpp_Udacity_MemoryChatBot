@@ -19,10 +19,8 @@ ChatLogic::ChatLogic()
     ////
 
     // create instance of chatbot
-    _chatBot = new ChatBot("../images/chatbot.png");
 
     // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
-    _chatBot->SetChatLogicHandle(this);
 
     ////
     //// EOF STUDENT CODE
@@ -34,7 +32,6 @@ ChatLogic::~ChatLogic()
     ////
 
     // delete chatbot instance
-    delete _chatBot;
 
     // delete all nodes 
     // removed in task 3
@@ -214,7 +211,6 @@ void ChatLogic::LoadAnswerGraphFromFile(string filename)
     localCB.SetChatLogicHandle(this);
     localCB.SetRootNode(rootNode);
     rootNode->MoveChatbotHere(move(localCB));
-    _chatBot->SetRootNode(rootNode);
     
     ////
     //// EOF STUDENT CODE
