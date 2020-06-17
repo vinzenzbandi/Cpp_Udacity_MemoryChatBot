@@ -44,9 +44,9 @@ ChatBot::~ChatBot()
     }
 }
 
-//// STUDENT CODE TODO
+//// STUDENT CODE
 //// 
-// Copy Constructor
+// Copy Constructor Task 2
 ChatBot::ChatBot(const ChatBot &source){
     cout << "ChatBot Copy Constructor" << endl;
     _image = new wxBitmap();

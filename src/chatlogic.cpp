@@ -15,12 +15,10 @@ using namespace std;
 
 ChatLogic::ChatLogic()
 {
-    //// STUDENT CODE TODO
+    //// STUDENT CODE
     ////
 
-    // create instance of chatbot
-
-    // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
+    // removed in task 5
 
     ////
     //// EOF STUDENT CODE
@@ -28,7 +26,7 @@ ChatLogic::ChatLogic()
 
 ChatLogic::~ChatLogic()
 {
-    //// STUDENT CODE TODO
+    //// STUDENT CODE
     ////
 
     // delete chatbot instance
@@ -115,8 +113,8 @@ void ChatLogic::LoadAnswerGraphFromFile(string filename)
                     // node-based processing
                     if (type->second == "NODE")
                     {
-                        //// STUDENT CODE TODO
-                        ////
+                        //// STUDENT CODE
+                        //// Updated in task 3
 
                         // check if node with this ID exists already
                         auto newNode = find_if(_nodes.begin(), _nodes.end(), [&id](unique_ptr<GraphNode> &node) { return node->GetID() == id; });
@@ -138,8 +136,8 @@ void ChatLogic::LoadAnswerGraphFromFile(string filename)
                     // edge-based processing
                     if (type->second == "EDGE")
                     {
-                        //// STUDENT CODE TODO
-                        ////
+                        //// STUDENT CODE 
+                        //// Updated in task 3
 
                         // find tokens for incoming (parent) and outgoing (child) node
                         auto parentToken = find_if(tokens.begin(), tokens.end(), [](const pair<string, string> &pair) { return pair.first == "PARENT"; });
@@ -152,7 +150,7 @@ void ChatLogic::LoadAnswerGraphFromFile(string filename)
                             auto childNode = find_if(_nodes.begin(), _nodes.end(), [&childToken](const unique_ptr<GraphNode> &node) { return node->GetID() == stoi(childToken->second); });
 
                             // create new edge
-                            unique_ptr<GraphEdge> edge = make_unique<GraphEdge>(id);
+                            unique_ptr<GraphEdge> edge = make_unique<GraphEdge>(id); // task 4
                             edge->SetChildNode((*childNode).get());
                             edge->SetParentNode((*parentNode).get());
 
@@ -184,8 +182,8 @@ void ChatLogic::LoadAnswerGraphFromFile(string filename)
         return;
     }
 
-    //// STUDENT CODE TODO
-    ////
+    //// STUDENT CODE
+    //// updated in task 3
 
     // identify root node
     GraphNode *rootNode = nullptr;
@@ -207,7 +205,8 @@ void ChatLogic::LoadAnswerGraphFromFile(string filename)
     }
 
     // add chatbot to graph root node
-    ChatBot localCB = ChatBot("../images/chatbot.png");
+    // local instance for chat bot task 5
+    ChatBot localCB = ChatBot("../images/chatbot.png"); 
     localCB.SetChatLogicHandle(this);
     localCB.SetRootNode(rootNode);
     rootNode->MoveChatbotHere(move(localCB));

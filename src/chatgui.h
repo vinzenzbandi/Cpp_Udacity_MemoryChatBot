@@ -15,7 +15,7 @@ private:
     wxBoxSizer *_dialogSizer;
     wxBitmap _image;
 
-    //// STUDENT CODE TODO
+    //// STUDENT CODE
     //// Task 1: giving exclusive ownership by using unique_ptr
 
     std::unique_ptr<ChatLogic> _chatLogic;
